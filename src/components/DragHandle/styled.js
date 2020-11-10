@@ -5,6 +5,7 @@ export const Container = styled.div`
   grid-template-columns: 1fr 1fr;
   /* Scaling because there is an issue with border radius of items in this component */
   transform: scale(.5);
+  height: min-content;
 `;
 
 export const Dot = styled.div`
@@ -13,5 +14,4 @@ export const Dot = styled.div`
   margin: 2px;
   background-color: #ECECEC;
   border-radius: 5px;
-  flex-shrink: 0;
 `;
