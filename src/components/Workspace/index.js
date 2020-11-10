@@ -15,7 +15,7 @@ export default function Workspace({ breakpoints, columns, layouts, children, sty
         cols={columns}>
         {children}
       </ResponsiveGridLayout>
-    </Container>
+    </Container >
   )
 }
 
