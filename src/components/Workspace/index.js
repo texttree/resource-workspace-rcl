@@ -10,14 +10,14 @@ export default function Workspace({ breakpoints, columns, layouts, children, sty
   return (
     <Container style={style}>
       <ResponsiveGridLayout
-        // containerPadding={[20, 20]}
+        draggableHandle={'.draggableHandle'}
         margin={[15, 15]}
         layouts={layouts}
         breakpoints={breakpoints}
         cols={columns}>
         {children}
       </ResponsiveGridLayout>
-    </Container >
+    </Container>
   )
 }
 

@@ -8,9 +8,5 @@ export const Container = styled.div`
 export const Body = styled.div`
   width: 100%;
   display: flex;
-  padding: 10px;
-`;
-
-export const Title = styled.div`
-  
+  flex-direction: column;
 `;

@@ -2,18 +2,37 @@ Basic example:
 
 ```jsx
 import Card from '../Card'
+function DragHandle () {
+  return (
+    <div
+      className='draggableHandle'
+      style={{
+        backgroundColor: 'grey',
+        padding: '10px 0',
+        width: '100%',
+        maxHeight: 20
+      }}
+    >
+      drag here
+    </div>
+  )
+}
 ;<Workspace style={{ backgroundColor: '#ECECEC' }}>
-  <Card title='Notes' key='a'>
-    hi
+  <Card key='a'>
+    <DragHandle />
+    Academy
   </Card>
-  <Card title='Academy' key='b'>
-    hi
+  <Card key='b'>
+    <DragHandle />
+    Notes
   </Card>
-  <Card title='Scripture' key='c'>
-    hi
+  <Card key='c'>
+    <DragHandle />
+    Words
   </Card>
-  <Card title='Words' key='d'>
-    hi
+  <Card key='d'>
+    <DragHandle />
+    Questions
   </Card>
 </Workspace>
 ```
