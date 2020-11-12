@@ -4,6 +4,7 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Container } from './styled';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css'
+import '../../style.css';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function Workspace({ breakpoints, columns, layouts, children, style }) {
