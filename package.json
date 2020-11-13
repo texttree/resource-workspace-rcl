@@ -3,8 +3,8 @@
   "scripts": {
     "test": "jest",
     "start": "styleguidist server",
-    "build": "babel src --out-dir lib",
-    "prePublishOnly": "yarn build"
+    "build": "styleguidist build",
+    "prePublishOnly": "babel src --out-dir lib"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
