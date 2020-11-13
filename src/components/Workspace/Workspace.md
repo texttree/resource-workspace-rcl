@@ -17,23 +17,13 @@ function DragHandle () {
     </div>
   )
 }
-;<Workspace style={{ backgroundColor: '#ECECEC' }}>
-  <Card key='a'>
-    <DragHandle />
-    Academy
-  </Card>
-  <Card key='b'>
-    <DragHandle />
-    Notes
-  </Card>
-  <Card key='c'>
-    <DragHandle />
-    Words
-  </Card>
-  <Card key='d'>
-    <DragHandle />
-    Questions
-  </Card>
+;<Workspace
+  layoutOptions={[[1, 1], [1, 1]]}
+  style={{ backgroundColor: '#ECECEC' }}>
+  <Card>Academy</Card>
+  <Card>Notes</Card>
+  <Card>Words</Card>
+  <Card>Questions</Card>
 </Workspace>
 ```
 
