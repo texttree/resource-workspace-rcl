@@ -20,16 +20,23 @@ const breakpoints = {
   lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
 };
 
+function getWidth(row, value) {
+  return (value / row.reduce((curr, next) => curr + next, 0)) * TOTAL_WIDTH_UNITS;
+}
+
 function generateLayouts(layoutOptions) {
   let layouts = [];
 
   layoutOptions.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
+      const previousColumns = row.filter((_, _index) => _index < cidx);
+      const x = previousColumns.reduce((curr, next) => getWidth(row, next) + curr, 0);
+
       layouts.push({
         i: String(layouts.length + 1),
-        x: cidx * (TOTAL_WIDTH_UNITS / row.length),
+        x,
         y: ridx * (TOTAL_WIDTH_UNITS / layoutOptions.length),
-        w: (cellUnit / row.length) * TOTAL_WIDTH_UNITS,
+        w: getWidth(row, cellUnit),
         h: (1 / layoutOptions.length) * layoutOptions.length,
       });
     });
