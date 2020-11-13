@@ -26,9 +26,9 @@ function generateLayouts(layoutOptions) {
   layoutOptions.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
       layouts.push({
-        i: String(((ridx + 1) * ridx) + cidx + 1),
-        x: ridx * (TOTAL_WIDTH_UNITS / row.length),
-        y: cidx,
+        i: String(layouts.length + 1),
+        x: cidx * (TOTAL_WIDTH_UNITS / row.length),
+        y: ridx * (TOTAL_WIDTH_UNITS / layoutOptions.length),
         w: (cellUnit / row.length) * TOTAL_WIDTH_UNITS,
         h: (1 / layoutOptions.length) * layoutOptions.length,
       });
