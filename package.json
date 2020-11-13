@@ -4,7 +4,7 @@
     "test": "jest",
     "start": "styleguidist server",
     "build": "babel src --out-dir lib",
-    "prepublishOnly": "yarn build"
+    "prePublishOnly": "yarn build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
