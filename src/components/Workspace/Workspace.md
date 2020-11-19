@@ -3,10 +3,9 @@ The API documentation of the Workspace React component. Learn more about the pro
 ### Basic
 
 ```jsx
-import { Card } from '../Card';
+import Card from '../Card';
 const layoutWidths = [[1, 1], [1, 1], [1]];
-function Component() {
-return (<Workspace
+<Workspace
   layoutWidths={layoutWidths}>
   <Card>1</Card>
   <Card>2</Card>
@@ -14,6 +13,4 @@ return (<Workspace
   <Card>4</Card>
   <Card>5</Card>
 </Workspace>
-)
-}
 ```
