@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { Container } from './styled';
+import { WorkspaceContainer } from './styled';
 import '../../../node_modules/react-grid-layout/css/styles.css';
 import '../../../node_modules/react-resizable/css/styles.css';
 import '../../style.css';
@@ -32,7 +32,7 @@ export default function Workspace({
     xxs: totalGridUnits,
   };
   return (
-    <Container>
+    <WorkspaceContainer>
       <ResponsiveGridLayout
         rowHeight={rowHeight}
         draggableHandle={dragHandleClassName}
@@ -43,7 +43,7 @@ export default function Workspace({
       >
         {children}
       </ResponsiveGridLayout>
-    </Container>
+    </WorkspaceContainer>
   );
 }
 
