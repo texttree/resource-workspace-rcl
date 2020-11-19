@@ -1,0 +1,67 @@
+import React, { useMemo } from 'react';
+
+export function useKeyWithChildren(_children) {
+  const children = useMemo(() =>
+    _children.map((childComponent, index) =>
+      React.cloneElement(childComponent, { key: index + 1 })), [_children]);
+  return children;
+}
+
+function getWidth(row, value, maxGridUnits) {
+  return (value / row.reduce((curr, next) => curr + next, 0)) * maxGridUnits;
+}
+
+/**
+ *
+ * @param {Array | Array[]} layoutHeights - The array of heights to specify the layout
+ * @param {number} ridx - row index
+ * @param {number} cidx - column index
+ */
+export function getHeight(layoutHeights, ridx, cidx) {
+  const isHeightArrayOfNumbers = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][cidx]);
+  const onlyFirstHeightSpecifiedInArray = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][0]);
+  const sameHeightForEntireRow = !isNaN(layoutHeights[ridx]);
+  const sameHeightForEntireTableInArray = !isNaN(layoutHeights[0]);
+  const sameHeightForEntireTable = !isNaN(layoutHeights);
+
+  if (isHeightArrayOfNumbers) {
+    //layoutHeights: [[1, 2, 3], [1,2,3], [1,2,3]]
+    return layoutHeights[ridx][cidx];
+  } else if (onlyFirstHeightSpecifiedInArray) {
+    //layoutHeights: [[1], [2], [3]]
+    return layoutHeights[ridx][0];
+  } else if (sameHeightForEntireRow) {
+    //layoutHeights: [1, 2, 3]
+    return layoutHeights[ridx];
+  } else if (sameHeightForEntireTableInArray) {
+    //layoutHeights: [1]
+    return layoutHeights[0];
+  } else if (sameHeightForEntireTable) {
+    //layoutHeights: 1
+    return layoutHeights;
+  } else {
+    //No height specified
+    return 1;
+  }
+}
+
+export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
+  let layouts = [];
+
+  layoutWidths.forEach((row, ridx) => {
+    row.forEach((cellUnit, cidx) => {
+      const previousColumns = row.filter((_, _index) => _index < cidx);
+      const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
+
+      layouts.push({
+        i: String(layouts.length + 1),
+        x,
+        y: ridx * (maxGridUnits / layoutWidths.length),
+        w: getWidth(row, cellUnit, maxGridUnits),
+        h: getHeight(layoutHeights, ridx, cidx),
+      });
+    });
+  });
+  debugger;
+  return { lg: layouts };
+}

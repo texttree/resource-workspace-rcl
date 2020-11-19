@@ -12,6 +12,7 @@ module.exports = {
   'rules': {
     'react/jsx-tag-spacing': ['error'],
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
+    'eslint/no-nested-ternary': 'off',
   },
   'env': {
     'browser': true,
