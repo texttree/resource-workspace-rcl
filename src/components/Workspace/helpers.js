@@ -62,5 +62,7 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
       });
     });
   });
-  return { lg: layouts };
+  return {
+    lg: layouts, md:layouts, sm: layouts,
+  };
 }

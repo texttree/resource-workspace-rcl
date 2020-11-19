@@ -19,10 +19,12 @@ export default function Workspace({
   maxGridUnits,
   gridMargin,
   breakpoints,
+  rowHeight,
+  columns: _columns,
 }) {
   let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], maxGridUnits);
   const children = useKeyWithChildren(_children);
-  const columns = {
+  const columns = _columns || {
     lg: maxGridUnits,
     md: maxGridUnits,
     sm: maxGridUnits,
@@ -32,6 +34,7 @@ export default function Workspace({
   return (
     <Container css={customCss} style={style}>
       <ResponsiveGridLayout
+        rowHeight={rowHeight}
         draggableHandle={dragHandleClassName}
         margin={gridMargin}
         layouts={layouts}
@@ -50,12 +53,14 @@ Workspace.defaultProps = {
   breakpoints: {
     lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
   },
+  rowHeight: 100,
 };
 
 Workspace.propTypes = {
   layoutWidths: PropTypes.array.isRequired,
   layoutHeight: PropTypes.number,
   layoutHeights: PropTypes.arrayOf(Number),
+  /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
   dragHandleClassName: PropTypes.string,
@@ -70,4 +75,12 @@ Workspace.propTypes = {
     xs: PropTypes.number,
     xxs: PropTypes.number,
   }),
+  columns: PropTypes.shape({
+    lg: PropTypes.number,
+    md: PropTypes.number,
+    sm: PropTypes.number,
+    xs: PropTypes.number,
+    xxs: PropTypes.number,
+  }),
+  rowHeight: PropTypes.number,
 };
