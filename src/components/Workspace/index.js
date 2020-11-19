@@ -32,7 +32,7 @@ export default function Workspace({
     xxs: totalGridUnits,
   };
   return (
-    <Container css={customCss} style={style}>
+    <Container>
       <ResponsiveGridLayout
         rowHeight={rowHeight}
         draggableHandle={dragHandleClassName}
