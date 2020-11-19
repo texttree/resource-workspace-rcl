@@ -1,10 +1,16 @@
 const path = require('path');
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
-const { name, version } = require('./package.json');
+const {
+  name, version, repository,
+} = require('./package.json');
 
 module.exports = {
   title: `${upperFirst(camelCase(name))} v${version}`,
+  ribbon: {
+    url: repository.url,
+    text: 'View on GitHub',
+  },
   moduleAliases: { 'resource-workspace-rcl': path.resolve(__dirname, 'src') },
   skipComponentsWithoutExample: true,
   ignore: ['**/helpers**', '**/styled**', '**/__tests__/**', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', '**/*.d.ts'],
@@ -16,6 +22,7 @@ module.exports = {
     return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
+    devtool: 'source-map',
     module: {
       rules: [
         {
