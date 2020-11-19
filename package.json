@@ -1,5 +1,6 @@
 {
   "name": "resource-workspace",
+  "version": "0.1.0",
   "scripts": {
     "test": "jest",
     "start": "styleguidist server",

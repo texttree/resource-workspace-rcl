@@ -62,6 +62,5 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
       });
     });
   });
-  debugger;
   return { lg: layouts };
 }
