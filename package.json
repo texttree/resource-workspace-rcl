@@ -1,11 +1,11 @@
 {
   "name": "resource-workspace-rcl",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "scripts": {
     "test": "jest",
     "start": "styleguidist server",
     "build": "styleguidist build",
-    "prePublishOnly": "babel src --out-dir dist"
+    "prePublishOnly": "rm -rf dist && babel src --out-dir dist"
   },
   "repository": {
     "url": "https://github.com/unfoldingWord/resource-workspace-rcl"
