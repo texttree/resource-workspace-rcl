@@ -10,26 +10,26 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function Workspace({
   layoutWidths,
-  layoutHeight = 1,
+  layoutHeight,
   children: _children,
   style,
   dragHandleClassName,
   layoutHeights,
   customCss,
-  maxGridUnits,
+  totalGridUnits,
   gridMargin,
   breakpoints,
   rowHeight,
   columns: _columns,
 }) {
-  let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], maxGridUnits);
+  let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], totalGridUnits);
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
-    lg: maxGridUnits,
-    md: maxGridUnits,
-    sm: maxGridUnits,
-    xs: maxGridUnits,
-    xxs: maxGridUnits,
+    lg: totalGridUnits,
+    md: totalGridUnits,
+    sm: totalGridUnits,
+    xs: totalGridUnits,
+    xxs: totalGridUnits,
   };
   return (
     <Container css={customCss} style={style}>
@@ -49,25 +49,26 @@ export default function Workspace({
 
 Workspace.defaultProps = {
   gridMargin: [15, 15],
-  maxGridUnits: 12,
+  totalGridUnits: 12,
   breakpoints: {
     lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
   },
   rowHeight: 100,
+  layoutHeights:[1],
+  layoutHeight: 1,
 };
 
 Workspace.propTypes = {
   layoutWidths: PropTypes.array.isRequired,
   layoutHeight: PropTypes.number,
-  layoutHeights: PropTypes.arrayOf(Number),
+  layoutHeights: PropTypes.arrayOf(PropTypes.number),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
   dragHandleClassName: PropTypes.string,
   customCss: PropTypes.string,
   totalGridUnits: PropTypes.number,
-  gridMargin: PropTypes.arrayOf(Number),
-  maxGridUnits: PropTypes.number,
+  gridMargin: PropTypes.arrayOf(PropTypes.number),
   breakpoints: PropTypes.shape({
     lg: PropTypes.number,
     md: PropTypes.number,

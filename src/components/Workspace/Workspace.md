@@ -5,8 +5,7 @@ The API documentation of the Workspace React component. Learn more about the pro
 ```jsx
 import Card from '../Card';
 const layoutWidths = [[1, 1], [1, 1], [1]];
-<Workspace
-  layoutWidths={layoutWidths}>
+<Workspace layoutWidths={layoutWidths}>
   <Card>1</Card>
   <Card>2</Card>
   <Card>3</Card>

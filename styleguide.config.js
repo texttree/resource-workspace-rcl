@@ -10,6 +10,7 @@ module.exports = {
   ignore: ['**/helpers**', '**/styled**', '**/__tests__/**', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', '**/*.d.ts'],
   serverPort: 6003,
   exampleMode:'expand',
+  usageMode: 'expand',
   getComponentPathLine(componentPath) {
     const componentName = componentPath.match(/(\w+)\/index.js/)[1];
     return `import { ${componentName} } from '${name}';`;
