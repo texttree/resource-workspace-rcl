@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, WidthProvider } from 'react-grid-layout';
-import { WorkspaceContainer } from './styled';
-import '../../../node_modules/react-grid-layout/css/styles.css';
-import '../../../node_modules/react-resizable/css/styles.css';
+import { Container } from './styled';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import '../../style.css';
 import { useKeyWithChildren, generateLayouts } from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -32,7 +32,7 @@ export default function Workspace({
     xxs: totalGridUnits,
   };
   return (
-    <WorkspaceContainer>
+    <Container style={style} css={customCss}>
       <ResponsiveGridLayout
         rowHeight={rowHeight}
         draggableHandle={dragHandleClassName}
@@ -43,7 +43,7 @@ export default function Workspace({
       >
         {children}
       </ResponsiveGridLayout>
-    </WorkspaceContainer>
+    </Container>
   );
 }
 
