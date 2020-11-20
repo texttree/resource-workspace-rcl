@@ -4,7 +4,6 @@ import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Container } from './styled';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import '../../style.css';
 import { useKeyWithChildren, generateLayouts } from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
