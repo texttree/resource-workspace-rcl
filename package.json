@@ -5,7 +5,7 @@
     "test": "jest",
     "start": "styleguidist server",
     "build": "styleguidist build",
-    "prepublishOnly": "rm -fr ./dist & babel ./src --out-dir ./dist -s inline --extensions \".ts,.js\"",
+    "prepublishOnly": "rm -fr ./dist & babel ./src --out-dir ./dist -s inline --extensions \".ts,.js\""
   },
   "repository": {
     "url": "https://github.com/unfoldingWord/resource-workspace-rcl"
