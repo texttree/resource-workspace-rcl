@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import Card from '../Card';
 
 export function useKeyWithChildren(_children) {
   let childrenArray = _children;
@@ -8,8 +9,9 @@ export function useKeyWithChildren(_children) {
   }
 
   const children = useMemo(() =>
-    childrenArray.map((childComponent, index) =>
-      React.cloneElement(childComponent, { key: index + 1 })), [childrenArray]);
+    childrenArray.map((childComponent, index) => (
+      <Card key={index + 1}>{React.cloneElement(childComponent)}</Card>
+    )), [childrenArray]);
   return children;
 }
 

@@ -4,16 +4,25 @@ The API documentation of the Workspace React component. Learn more about the pro
 
 ```jsx
 import { Card } from 'translation-helps-rcl';
+import { makeStyles } from '@material-ui/core/styles'
+const useStyles = makeStyles(() => ({
+  root: {
+    padding: 0,
+    margin: '0 1px !important'
+  }
+}));
 const layoutWidths = [[1, 1], [1, 1], [1]];
+const cardClasses = useStyles();
+
 <Workspace layoutWidths={layoutWidths}>
-  <Card>1</Card>
-  <Card>2</Card>
-  <Card>3</Card>
-  <Card>4</Card>
-  <Card>5</Card>
+  <Card classes={cardClasses}>1</Card>
+  <Card classes={cardClasses}>2</Card>
+  <Card classes={cardClasses}>3</Card>
+  <Card classes={cardClasses}>4</Card>
+  <Card classes={cardClasses}>5</Card>
 </Workspace>
 ```
-
+<!-- 
 ```jsx
 import Card from '../Card';
 const layoutWidths = [[1, 1], [1, 1], [1]];
@@ -115,4 +124,4 @@ import Card from '../Card';
   <Card>6</Card>
   <Card>7</Card>
 </Workspace>
-```
+``` -->
