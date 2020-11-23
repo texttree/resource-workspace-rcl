@@ -3,8 +3,7 @@ The API documentation of the Workspace React component. Learn more about the pro
 ### Basic
 
 ```jsx
-import { Card as Card2 } from 'translation-helps-rcl';
-import Card from '../Card';
+import { Card } from 'translation-helps-rcl';
 const layoutWidths = [[1, 1], [1, 1], [1]];
 <Workspace layoutWidths={layoutWidths}>
   <Card>1</Card>

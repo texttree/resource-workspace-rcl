@@ -1,9 +1,15 @@
 import React, { useMemo } from 'react';
 
 export function useKeyWithChildren(_children) {
+  let childrenArray = _children;
+
+  if (!Array.isArray(_children)) {
+    childrenArray = [_children];
+  }
+
   const children = useMemo(() =>
-    _children.map((childComponent, index) =>
-      React.cloneElement(childComponent, { key: index + 1 })), [_children]);
+    childrenArray.map((childComponent, index) =>
+      React.cloneElement(childComponent, { key: index + 1 })), [childrenArray]);
   return children;
 }
 
@@ -63,6 +69,6 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
     });
   });
   return {
-    lg: layouts, md:layouts, sm: layouts,
+    lg: layouts, md: layouts, sm: layouts,
   };
 }

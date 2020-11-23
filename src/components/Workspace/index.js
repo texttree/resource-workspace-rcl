@@ -53,8 +53,9 @@ Workspace.defaultProps = {
     lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
   },
   rowHeight: 100,
-  layoutHeights:[1],
+  layoutHeights: [1],
   layoutHeight: 1,
+  children: [],
 };
 
 Workspace.propTypes = {
