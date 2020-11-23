@@ -8,13 +8,14 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(() => ({
   root: {
     padding: 0,
-    margin: '0 1px !important'
+    margin: '0 1px !important',
+    height: '100%'
   }
 }));
 const layoutWidths = [[1, 1], [1, 1], [1]];
 const cardClasses = useStyles();
 
-<Workspace layoutWidths={layoutWidths}>
+<Workspace dragHandleClassName=".drag-handle" layoutWidths={layoutWidths}>
   <Card classes={cardClasses}>1</Card>
   <Card classes={cardClasses}>2</Card>
   <Card classes={cardClasses}>3</Card>
