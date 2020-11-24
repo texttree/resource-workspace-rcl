@@ -12,7 +12,7 @@ export default function Workspace({
   layoutHeight,
   children: _children,
   style,
-  dragHandleClassName,
+  dragHandleClass,
   layoutHeights,
   totalGridUnits,
   gridMargin,
@@ -35,9 +35,9 @@ export default function Workspace({
   return (
     <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout
-        // resizeHandle={resizeHandle}
+        resizeHandle={resizeHandle || ''}
         rowHeight={rowHeight}
-        draggableHandle={dragHandleClassName}
+        draggableHandle={`.${dragHandleClass}` || ''}
         margin={gridMargin}
         layouts={layouts}
         breakpoints={breakpoints}
@@ -70,7 +70,7 @@ Workspace.propTypes = {
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
-  dragHandleClassName: PropTypes.string,
+  dragHandleClass: PropTypes.string,
   customCss: PropTypes.string,
   totalGridUnits: PropTypes.number,
   gridMargin: PropTypes.arrayOf(PropTypes.number),

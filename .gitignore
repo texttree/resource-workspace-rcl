@@ -1,5 +1,6 @@
 .yalc
 yalc*
+styleguide
 
 # Logs
 logs
@@ -106,3 +107,6 @@ yac
 
 # TernJS port file
 .tern-port
+
+# Local Netlify folder
+.netlify
