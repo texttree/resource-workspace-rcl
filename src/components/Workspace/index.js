@@ -21,6 +21,7 @@ export default function Workspace({
   columns: _columns,
   dragBackgroundColor,
   classes,
+  resizeHandle,
 }) {
   let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], totalGridUnits);
   const children = useKeyWithChildren(_children);
@@ -34,6 +35,7 @@ export default function Workspace({
   return (
     <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout
+        // resizeHandle={resizeHandle}
         rowHeight={rowHeight}
         draggableHandle={dragHandleClassName}
         margin={gridMargin}
@@ -89,4 +91,5 @@ Workspace.propTypes = {
   rowHeight: PropTypes.number,
   dragBackgroundColor: PropTypes.string,
   classes: PropTypes.object,
+  resizeHandle: PropTypes.instanceOf(React.Component),
 };

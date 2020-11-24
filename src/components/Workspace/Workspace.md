@@ -16,14 +16,14 @@ const useStyles = makeStyles(() => ({
 const layoutWidths = [[1, 1], [1, 1], [1]];
 const cardClasses = useStyles();
 
-<Workspace 
+<Workspace
   gridMargin={[15, 15]}
   dragHandleClassName=".drag-handle" 
   layoutWidths={layoutWidths}>
-  <Card classes={cardClasses}>1</Card>
-  <Card classes={cardClasses}>2</Card>
-  <Card classes={cardClasses}>3</Card>
-  <Card classes={cardClasses}>4</Card>
-  <Card classes={cardClasses}>5</Card>
+  <Card title="translationWords" classes={cardClasses}>1</Card>
+  <Card title="translationAcademy" classes={cardClasses}>2</Card>
+  <Card title="translationNotes" classes={cardClasses}>3</Card>
+  <Card title="translationQuestoins" classes={cardClasses}>4</Card>
+  <Card title="Open Bible Stories" classes={cardClasses}>5</Card>
 </Workspace>
 ```
