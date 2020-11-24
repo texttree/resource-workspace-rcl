@@ -15,15 +15,15 @@ const useStyles = makeStyles(() => ({
   dragIndicator: {}
 }));
 const layoutWidths = [[1, 1], [1, 1], [1]];
-const cardClasses = useStyles();
+const classes = useStyles();
 <Workspace
   gridMargin={[15, 15]}
-  dragHandleClass={cardClasses.dragIndicator}
+  classes={classes}
   layoutWidths={layoutWidths}>
-  <Card title="translationWords" classes={cardClasses}>1</Card>
-  <Card title="translationAcademy" classes={cardClasses}>2</Card>
-  <Card title="translationNotes" classes={cardClasses}>3</Card>
-  <Card title="translationQuestoins" classes={cardClasses}>4</Card>
-  <Card title="Open Bible Stories" classes={cardClasses}>5</Card>
+  <Card title="translationWords" classes={classes}>1</Card>
+  <Card title="translationAcademy" classes={classes}>2</Card>
+  <Card title="translationNotes" classes={classes}>3</Card>
+  <Card title="translationQuestoins" classes={classes}>4</Card>
+  <Card title="Open Bible Stories" classes={classes}>5</Card>
 </Workspace>
 ```

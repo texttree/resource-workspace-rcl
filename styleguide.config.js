@@ -22,6 +22,7 @@ module.exports = {
     return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
+    devServer: { port: 6003, transportMode: 'ws' },
     devtool: 'source-map',
     module: {
       rules: [

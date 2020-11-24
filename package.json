@@ -48,7 +48,7 @@
     "scripture-resources-rcl": "^2.0.8",
     "style-loader": "^2.0.0",
     "translation-helps-rcl": "0.6.5",
-    "webpack": "4.44.0"
+    "webpack": "^4.44.2"
   },
   "browserslist": [
     ">1%",

@@ -12,7 +12,6 @@ export default function Workspace({
   layoutHeight,
   children: _children,
   style,
-  dragHandleClass,
   layoutHeights,
   totalGridUnits,
   gridMargin,
@@ -32,6 +31,7 @@ export default function Workspace({
     xs: totalGridUnits,
     xxs: totalGridUnits,
   };
+  const dragHandleClass = classes.dragIndicator;
   return (
     <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout
@@ -60,7 +60,10 @@ Workspace.defaultProps = {
   layoutHeight: 1,
   children: [],
   dragBackgroundColor: 'transparent',
-  classes: {},
+  classes: {
+    root: {},
+    dragIndicator: {},
+  },
 };
 
 Workspace.propTypes = {
