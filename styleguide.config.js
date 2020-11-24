@@ -22,6 +22,7 @@ module.exports = {
     return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
+    //https://github.com/facebook/create-react-app/pull/8079#issuecomment-562373869
     devServer: { port: 6003, transportMode: 'ws' },
     devtool: 'source-map',
     module: {
