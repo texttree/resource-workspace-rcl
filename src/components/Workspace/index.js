@@ -12,14 +12,15 @@ export default function Workspace({
   layoutHeight,
   children: _children,
   style,
-  dragHandleClassName,
   layoutHeights,
-  customCss,
   totalGridUnits,
   gridMargin,
   breakpoints,
   rowHeight,
   columns: _columns,
+  dragBackgroundColor,
+  classes,
+  resizeHandle,
 }) {
   let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], totalGridUnits);
   const children = useKeyWithChildren(_children);
@@ -30,11 +31,13 @@ export default function Workspace({
     xs: totalGridUnits,
     xxs: totalGridUnits,
   };
+  const dragHandleClass = classes.dragIndicator;
   return (
-    <Container style={style} css={customCss}>
+    <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout
+        resizeHandle={resizeHandle || ''}
         rowHeight={rowHeight}
-        draggableHandle={dragHandleClassName}
+        draggableHandle={`.${dragHandleClass}` || ''}
         margin={gridMargin}
         layouts={layouts}
         breakpoints={breakpoints}
@@ -47,14 +50,20 @@ export default function Workspace({
 }
 
 Workspace.defaultProps = {
-  gridMargin: [15, 15],
+  gridMargin: [0, 0],
   totalGridUnits: 12,
   breakpoints: {
     lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
   },
   rowHeight: 100,
-  layoutHeights:[1],
+  layoutHeights: [1],
   layoutHeight: 1,
+  children: [],
+  dragBackgroundColor: 'transparent',
+  classes: {
+    root: {},
+    dragIndicator: {},
+  },
 };
 
 Workspace.propTypes = {
@@ -64,7 +73,7 @@ Workspace.propTypes = {
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
-  dragHandleClassName: PropTypes.string,
+  dragHandleClass: PropTypes.string,
   customCss: PropTypes.string,
   totalGridUnits: PropTypes.number,
   gridMargin: PropTypes.arrayOf(PropTypes.number),
@@ -83,4 +92,7 @@ Workspace.propTypes = {
     xxs: PropTypes.number,
   }),
   rowHeight: PropTypes.number,
+  dragBackgroundColor: PropTypes.string,
+  classes: PropTypes.object,
+  resizeHandle: PropTypes.instanceOf(React.Component),
 };

@@ -15,18 +15,19 @@ module.exports = {
   skipComponentsWithoutExample: true,
   ignore: ['**/helpers**', '**/styled**', '**/__tests__/**', '**/*.test.{js,jsx,ts,tsx}', '**/*.spec.{js,jsx,ts,tsx}', '**/*.d.ts'],
   serverPort: 6003,
-  exampleMode:'expand',
+  exampleMode: 'expand',
   usageMode: 'expand',
   getComponentPathLine(componentPath) {
     const componentName = componentPath.match(/(\w+)\/index.js/)[1];
     return `import { ${componentName} } from '${name}';`;
   },
   webpackConfig: {
+    devServer: { port: 6003, transportMode: 'ws' },
     devtool: 'source-map',
     module: {
       rules: [
         {
-          test: /\.jsx?$/,
+          test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
