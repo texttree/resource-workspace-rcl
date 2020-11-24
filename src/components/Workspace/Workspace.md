@@ -14,12 +14,14 @@ const useStyles = makeStyles(() => ({
   },
   dragIndicator: {}
 }));
-const layoutWidths = [[1, 1], [1, 1], [1]];
+const layout = {
+  widths: [[1, 1], [1, 1], [1]]
+}
 const classes = useStyles();
 <Workspace
   gridMargin={[15, 15]}
   classes={classes}
-  layoutWidths={layoutWidths}>
+  layout={layout}>
   <Card title="translationWords" classes={classes}>1</Card>
   <Card title="translationAcademy" classes={classes}>2</Card>
   <Card title="translationNotes" classes={classes}>3</Card>

@@ -8,11 +8,9 @@ import { useKeyWithChildren, generateLayouts } from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function Workspace({
-  layoutWidths,
-  layoutHeight,
   children: _children,
   style,
-  layoutHeights,
+  layout,
   totalGridUnits,
   gridMargin,
   breakpoints,
@@ -22,7 +20,11 @@ export default function Workspace({
   classes,
   resizeHandle,
 }) {
-  let layouts = generateLayouts(layoutWidths, layoutHeights || [layoutHeight], totalGridUnits);
+  const {
+    widths: layoutWidths,
+    heights: layoutHeights = 1,
+  } = layout;
+  let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
     lg: totalGridUnits,
@@ -55,9 +57,11 @@ Workspace.defaultProps = {
   breakpoints: {
     lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
   },
+  layout: {
+    widths: [[1]],
+    heights: [[1]],
+  },
   rowHeight: 100,
-  layoutHeights: [1],
-  layoutHeight: 1,
   children: [],
   dragBackgroundColor: 'transparent',
   classes: {
@@ -67,9 +71,10 @@ Workspace.defaultProps = {
 };
 
 Workspace.propTypes = {
-  layoutWidths: PropTypes.array.isRequired,
-  layoutHeight: PropTypes.number,
-  layoutHeights: PropTypes.arrayOf(PropTypes.number),
+  layout: PropTypes.shape({
+    widths: PropTypes.array.isRequired,
+    heights: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+  }),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
