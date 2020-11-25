@@ -81,16 +81,16 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, works
       const previousColumns = row.filter((_, _index) => _index < cidx);
       const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
       const i = String(layouts.length + 1);
+      const y = ridx * (maxGridUnits / layoutWidths.length);
+      const w = getWidth(row, cellUnit, maxGridUnits);
+      const h = getHeight(layoutHeights, ridx, cidx);
 
       layouts.push({
-        i,
-        x,
-        y: ridx * (maxGridUnits / layoutWidths.length),
-        w: getWidth(row, cellUnit, maxGridUnits, workspaceProps[i - 1].hide),
-        h: getHeight(layoutHeights, ridx, cidx, workspaceProps[i - 1].hide),
+        i, x, y, w, h,
       });
     });
   });
+  layouts = layouts.filter((_, i) => workspaceProps[i].hide !== true);
   return {
     lg: layouts, md: layouts, sm: layouts,
   };
