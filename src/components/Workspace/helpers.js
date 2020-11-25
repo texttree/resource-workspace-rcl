@@ -1,21 +1,37 @@
 import React, { useMemo } from 'react';
 import Card from '../Card';
 
+function getWorkspaceChildrenProps(childrenProps) {
+  let props = {};
+
+  Object.keys(childrenProps).forEach((key) => {
+    if (key.match(/workspace-\w+/)) {
+      props[key.replace(/workspace-/, '')] = childrenProps[key];
+    }
+  });
+  return props;
+}
+
 export function useKeyWithChildren(_children) {
+  const workspaceProps = useMemo(() => [], []);
   let childrenArray = _children;
 
   if (!Array.isArray(_children)) {
     childrenArray = [_children];
   }
 
-  const children = useMemo(() =>
-    childrenArray.map((childComponent, index) => (
-      <Card key={index + 1}>{React.cloneElement(childComponent)}</Card>
-    )), [childrenArray]);
-  return children;
+  const children = useMemo(() => childrenArray.map((childComponent, index) => {
+    workspaceProps[index] = getWorkspaceChildrenProps(childComponent.props);
+    return (<Card key={index + 1} {...workspaceProps[index]}>{React.cloneElement(childComponent)}</Card>
+    );
+  }), [childrenArray, workspaceProps]);
+  return [children, workspaceProps];
 }
 
-function getWidth(row, value, maxGridUnits) {
+function getWidth(row, value, maxGridUnits, hide) {
+  if (hide === true) {
+    return 0;
+  }
   return (value / row.reduce((curr, next) => curr + next, 0)) * maxGridUnits;
 }
 
@@ -25,7 +41,11 @@ function getWidth(row, value, maxGridUnits) {
  * @param {number} ridx - row index
  * @param {number} cidx - column index
  */
-export function getHeight(layoutHeights, ridx, cidx) {
+export function getHeight(layoutHeights, ridx, cidx, hide) {
+  if (hide === true) {
+    return 0;
+  }
+
   const isHeightArrayOfNumbers = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][cidx]);
   const onlyFirstHeightSpecifiedInArray = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][0]);
   const sameHeightForEntireRow = !isNaN(layoutHeights[ridx]);
@@ -53,20 +73,21 @@ export function getHeight(layoutHeights, ridx, cidx) {
   }
 }
 
-export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
+export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, workspaceProps) {
   let layouts = [];
 
   layoutWidths.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
       const previousColumns = row.filter((_, _index) => _index < cidx);
       const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
+      const i = String(layouts.length + 1);
 
       layouts.push({
-        i: String(layouts.length + 1),
+        i,
         x,
         y: ridx * (maxGridUnits / layoutWidths.length),
-        w: getWidth(row, cellUnit, maxGridUnits),
-        h: getHeight(layoutHeights, ridx, cidx),
+        w: getWidth(row, cellUnit, maxGridUnits, workspaceProps[i - 1].hide),
+        h: getHeight(layoutHeights, ridx, cidx, workspaceProps[i - 1].hide),
       });
     });
   });

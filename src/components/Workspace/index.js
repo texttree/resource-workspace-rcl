@@ -24,8 +24,9 @@ export default function Workspace({
     widths: layoutWidths,
     heights: layoutHeights = 1,
   } = layout;
-  let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
-  const children = useKeyWithChildren(_children);
+  const [children, workspaceProps] = useKeyWithChildren(_children);
+  let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, workspaceProps);
+  console.log('layouts', layouts);
   const columns = _columns || {
     lg: totalGridUnits,
     md: totalGridUnits,

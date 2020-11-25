@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, Body } from './styled';
 
 export default function Card({
-  style, children, ...other
+  style, children, hide, ...other
 }) {
   return (
-    <Container style={style} {...other}>
+    <Container hide={hide} style={style} {...other}>
       <Body>
         {children}
       </Body>

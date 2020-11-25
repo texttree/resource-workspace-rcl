@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
+  display: ${props => props.hide ? 'none' : 'flex'};
   cursor: pointer;
 `;
 

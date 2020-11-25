@@ -4,8 +4,11 @@ The API documentation of the Workspace React component. Learn more about the pro
 
 
 ```jsx
+import {useState} from 'react';
 import { Card } from 'translation-helps-rcl';
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+const [hide, setHide] = useState(false);
 const useStyles = makeStyles(() => ({
   root: {
     padding: 0,
@@ -22,7 +25,9 @@ const classes = useStyles();
   gridMargin={[15, 15]}
   classes={classes}
   layout={layout}>
-  <Card title="translationWords" classes={classes}>1</Card>
+  <Card workspace-hide={hide} title="translationWords" classes={classes}>
+    <Button onClick={() => setHide(!hide)}>Minimize</Button>
+  </Card>
   <Card title="translationAcademy" classes={classes}>2</Card>
   <Card title="translationNotes" classes={classes}>3</Card>
   <Card title="translationQuestoins" classes={classes}>4</Card>
