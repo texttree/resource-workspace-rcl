@@ -22,16 +22,14 @@ export function useKeyWithChildren(_children) {
 
   const children = useMemo(() => childrenArray.map((childComponent, index) => {
     workspaceProps[index] = getWorkspaceChildrenProps(childComponent.props);
-    return (<Card key={index + 1} {...workspaceProps[index]}>{React.cloneElement(childComponent)}</Card>
+
+    return (<Card {...workspaceProps[index]} key={index + 1} >{React.cloneElement(childComponent)}</Card>
     );
   }), [childrenArray, workspaceProps]);
   return [children, workspaceProps];
 }
 
-function getWidth(row, value, maxGridUnits, hide) {
-  if (hide === true) {
-    return 0;
-  }
+function getWidth(row, value, maxGridUnits) {
   return (value / row.reduce((curr, next) => curr + next, 0)) * maxGridUnits;
 }
 
@@ -41,11 +39,7 @@ function getWidth(row, value, maxGridUnits, hide) {
  * @param {number} ridx - row index
  * @param {number} cidx - column index
  */
-export function getHeight(layoutHeights, ridx, cidx, hide) {
-  if (hide === true) {
-    return 0;
-  }
-
+export function getHeight(layoutHeights, ridx, cidx) {
   const isHeightArrayOfNumbers = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][cidx]);
   const onlyFirstHeightSpecifiedInArray = Array.isArray(layoutHeights[ridx]) && !isNaN(layoutHeights[ridx][0]);
   const sameHeightForEntireRow = !isNaN(layoutHeights[ridx]);
@@ -79,8 +73,8 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, works
   layoutWidths.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
       const previousColumns = row.filter((_, _index) => _index < cidx);
-      const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
       const i = String(layouts.length + 1);
+      const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
       const y = ridx * (maxGridUnits / layoutWidths.length);
       const w = getWidth(row, cellUnit, maxGridUnits);
       const h = getHeight(layoutHeights, ridx, cidx);
@@ -90,8 +84,9 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, works
       });
     });
   });
-  layouts = layouts.filter((_, i) => workspaceProps[i].hide !== true);
+  //layouts = layouts.filter((_, i) => workspaceProps[i].hide !== true);
   return {
     lg: layouts, md: layouts, sm: layouts,
   };
 }
+

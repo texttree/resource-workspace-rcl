@@ -35,6 +35,18 @@ export default function Workspace({
     xxs: totalGridUnits,
   };
   const dragHandleClass = classes.dragIndicator;
+  // const layout = [{
+  //   'i': '1', 'x': 0, 'y': 0, 'w': 6, 'h': 1,
+  // }, {
+  //   'i': '2', 'x': 6, 'y': 0, 'w': 6, 'h': 1,
+  // }, {
+  //   'i': '3', 'x': 0, 'y': 1, 'w': 6, 'h': 1,
+  // }, {
+  //   'i': '5', 'x': 0, 'y': 2, 'w': 12, 'h': 1,
+  // }];
+  // const layouts = {
+  //   'lg': layout, 'md': layout, 'sm': layout,
+  // };
   return (
     <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout

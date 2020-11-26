@@ -8,7 +8,7 @@ import {useState} from 'react';
 import { Card } from 'translation-helps-rcl';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-const [hide, setHide] = useState(false);
+const [hiddenElements, setHiddenElements] = useState({});
 const useStyles = makeStyles(() => ({
   root: {
     padding: 0,
@@ -25,12 +25,40 @@ const classes = useStyles();
   gridMargin={[15, 15]}
   classes={classes}
   layout={layout}>
-  <Card workspace-hide={hide} title="translationWords" classes={classes}>
-    <Button onClick={() => setHide(!hide)}>Minimize</Button>
-  </Card>
-  <Card title="translationAcademy" classes={classes}>2</Card>
-  <Card title="translationNotes" classes={classes}>3</Card>
-  <Card title="translationQuestoins" classes={classes}>4</Card>
-  <Card title="Open Bible Stories" classes={classes}>5</Card>
+<Card workspace-hide={hiddenElements[0]} title={1} classes={classes}>
+<Button onClick={() => {
+    const copy = {...hiddenElements}
+    copy[0] = true;
+    setHiddenElements(copy);
+  }}>Minimize</Button>
+</Card>
+        <Card workspace-hide={hiddenElements[1]} title={"2"} classes={classes}>
+<Button onClick={() => {
+    const copy = {...hiddenElements}
+    copy[1] = true;
+    setHiddenElements(copy);
+  }}>Minimize</Button>
+</Card>
+        <Card workspace-hide={hiddenElements[2]} title={"3"} classes={classes}>
+<Button onClick={() => {
+    const copy = {...hiddenElements}
+    copy[2] = true;
+    setHiddenElements(copy);
+  }}>Minimize</Button>
+</Card>
+        <Card workspace-hide={hiddenElements[3]} title={"4"} classes={classes}>
+<Button onClick={() => {
+    const copy = {...hiddenElements}
+    copy[3] = true;
+    setHiddenElements(copy);
+  }}>Minimize</Button>
+</Card>
+        <Card workspace-hide={hiddenElements[4]} title={"5"} classes={classes}>
+<Button onClick={() => {
+    const copy = {...hiddenElements}
+    copy[4] = true;
+    setHiddenElements(copy);
+  }}>Minimize</Button>
+</Card>
 </Workspace>
 ```
