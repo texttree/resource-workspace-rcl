@@ -2,7 +2,7 @@ The API documentation of the Workspace React component. Learn more about the pro
 
 ### Basic
 
-
+<!--
 ```jsx
 import {useState} from 'react';
 import { Card } from 'translation-helps-rcl';
@@ -61,4 +61,42 @@ const classes = useStyles();
   }}>Minimize</Button>
 </Card>
 </Workspace>
+``` -->
+
+```jsx
+import { useState } from "react";
+import { Card } from "translation-helps-rcl";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+const [hiddenElements, setHiddenElements] = useState({});
+const useStyles = makeStyles(() => ({
+  root: {
+    padding: 0,
+    margin: "0 1px !important",
+    height: "100%",
+  },
+  dragIndicator: {},
+}));
+const layout = {
+  widths: [[1, 1], [1, 1], [1]],
+};
+const classes = useStyles();
+<Workspace gridMargin={[15, 15]} classes={classes} layout={layout}>
+  <div
+    key={"1"}
+    workspace-hide={true}
+    style={{ backgroundColor: "grey", height: "100%" }}
+  >
+    1
+  </div>
+  <div key={"2"} style={{ backgroundColor: "grey", height: "100%" }}>
+    2
+  </div>
+  <div key={"3"} style={{ backgroundColor: "grey", height: "100%" }}>
+    3
+  </div>
+  <div key={"4"} style={{ backgroundColor: "grey", height: "100%" }}>
+    4
+  </div>
+</Workspace>;
 ```

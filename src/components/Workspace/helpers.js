@@ -13,7 +13,7 @@ function getWorkspaceChildrenProps(childrenProps) {
 }
 
 export function useKeyWithChildren(_children) {
-  const workspaceProps = useMemo(() => [], []);
+  const workspaceProps = [];
   let childrenArray = _children;
 
   if (!Array.isArray(_children)) {
@@ -23,7 +23,10 @@ export function useKeyWithChildren(_children) {
   const children = useMemo(() => childrenArray.map((childComponent, index) => {
     workspaceProps[index] = getWorkspaceChildrenProps(childComponent.props);
 
-    return (<Card {...workspaceProps[index]} key={index + 1} >{React.cloneElement(childComponent)}</Card>
+    if (workspaceProps[index].hide) {
+      return <></>;
+    }
+    return (<Card {...workspaceProps[index]} key={childComponent.key || index + 1} >{React.cloneElement(childComponent)}</Card>
     );
   }), [childrenArray, workspaceProps]);
   return [children, workspaceProps];
@@ -84,7 +87,7 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, works
       });
     });
   });
-  //layouts = layouts.filter((_, i) => workspaceProps[i].hide !== true);
+  layouts = layouts.filter((_, i) => workspaceProps[i].hide !== true);
   return {
     lg: layouts, md: layouts, sm: layouts,
   };

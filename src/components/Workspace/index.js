@@ -10,7 +10,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 export default function Workspace({
   children: _children,
   style,
-  layout,
+  // layout,
   totalGridUnits,
   gridMargin,
   breakpoints,
@@ -20,12 +20,12 @@ export default function Workspace({
   classes,
   resizeHandle,
 }) {
-  const {
-    widths: layoutWidths,
-    heights: layoutHeights = 1,
-  } = layout;
+  // const {
+  //   widths: layoutWidths,
+  //   heights: layoutHeights = 1,
+  // } = layout;
   const [children, workspaceProps] = useKeyWithChildren(_children);
-  let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, workspaceProps);
+  // let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, workspaceProps);
   console.log('layouts', layouts);
   const columns = _columns || {
     lg: totalGridUnits,
@@ -35,24 +35,24 @@ export default function Workspace({
     xxs: totalGridUnits,
   };
   const dragHandleClass = classes.dragIndicator;
-  // const layout = [{
-  //   'i': '1', 'x': 0, 'y': 0, 'w': 6, 'h': 1,
-  // }, {
-  //   'i': '2', 'x': 6, 'y': 0, 'w': 6, 'h': 1,
-  // }, {
-  //   'i': '3', 'x': 0, 'y': 1, 'w': 6, 'h': 1,
-  // }, {
-  //   'i': '5', 'x': 0, 'y': 2, 'w': 12, 'h': 1,
-  // }];
-  // const layouts = {
-  //   'lg': layout, 'md': layout, 'sm': layout,
-  // };
+  const layout = [
+    {
+      'i': '2', 'x': 6, 'y': 0, 'w': 6, 'h': 1,
+    },
+    {
+      'i': '3', 'x': 0, 'y': 1, 'w': 6, 'h': 1,
+    },
+    {
+      'i': '4', 'x': 6, 'y': 1, 'w': 6, 'h': 1,
+    }];
+  const layouts = {
+    'lg': layout, 'md': layout, 'sm': layout,
+  };
   return (
     <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
       <ResponsiveGridLayout
         resizeHandle={resizeHandle || ''}
         rowHeight={rowHeight}
-        draggableHandle={`.${dragHandleClass}` || ''}
         margin={gridMargin}
         layouts={layouts}
         breakpoints={breakpoints}
