@@ -1,6 +1,6 @@
 {
   "name": "resource-workspace-rcl",
-  "version": "0.2.7",
+  "version": "0.2.8-rc1",
   "scripts": {
     "test": "jest",
     "start": "styleguidist server",
