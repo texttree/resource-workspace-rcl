@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Container } from './styled';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
 import { useKeyWithChildren, generateLayouts } from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -20,10 +18,7 @@ export default function Workspace({
   classes,
   resizeHandle,
 }) {
-  const {
-    widths: layoutWidths,
-    heights: layoutHeights = 1,
-  } = layout;
+  const { widths: layoutWidths, heights: layoutHeights = 1 } = layout;
   let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
@@ -35,7 +30,11 @@ export default function Workspace({
   };
   const dragHandleClass = classes.dragIndicator;
   return (
-    <Container dragBackgroundColor={dragBackgroundColor} style={style} classes={classes.root}>
+    <Container
+      dragBackgroundColor={dragBackgroundColor}
+      style={style}
+      classes={classes.root}
+    >
       <ResponsiveGridLayout
         resizeHandle={resizeHandle || ''}
         rowHeight={rowHeight}
@@ -55,7 +54,11 @@ Workspace.defaultProps = {
   gridMargin: [0, 0],
   totalGridUnits: 12,
   breakpoints: {
-    lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0,
+    lg: 1200,
+    md: 996,
+    sm: 768,
+    xs: 480,
+    xxs: 0,
   },
   layout: {
     widths: [[1]],
@@ -73,7 +76,10 @@ Workspace.defaultProps = {
 Workspace.propTypes = {
   layout: PropTypes.shape({
     widths: PropTypes.array.isRequired,
-    heights: PropTypes.oneOf([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+    heights: PropTypes.oneOf([
+      PropTypes.arrayOf(PropTypes.number),
+      PropTypes.number,
+    ]),
   }),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
