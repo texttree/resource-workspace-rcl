@@ -44,7 +44,7 @@ function onLayoutChange(layout) {
 
 const classes = useStyles();
 
-<Workspace gridMargin={[15, 15]} classes={classes} layout={layout}>
+<Workspace gridMargin={[15, 15]} classes={classes} layout={layout} onLayoutChange={onLayoutChange}>
   <Card title="translationWords" classes={classes}>
     1
   </Card>
