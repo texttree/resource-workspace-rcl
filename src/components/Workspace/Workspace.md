@@ -34,7 +34,8 @@ const layout = {
 };
 
 function onLayoutChange(layout) {
-  console.log(`onLayoutChange: raw: ${JSON.stringify(layout)}`);
+  // in this method you could save current layout in local storage and later restore on refresh
+  console.log(`onLayoutChange: new resource layout: ${JSON.stringify(layout)}`);
 }
 
 const classes = useStyles();
