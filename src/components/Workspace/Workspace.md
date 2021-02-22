@@ -18,13 +18,29 @@ const useStyles = makeStyles(() => ({
   dragIndicator: {},
 }));
 
+const absoluteLayout = [
+  {"w":6,"h":1,"x":0,"y":0,"i":"1"},
+  {"w":6,"h":1,"x":6,"y":2,"i":"2"},
+  {"w":6,"h":1,"x":0,"y":2,"i":"3"},
+  {"w":6,"h":1,"x":6,"y":0,"i":"4"},
+  {"w":12,"h":1,"x":0,"y":1,"i":"5"},
+];
+
 const layout = {
+  // this line is for relative positioning
   widths: [[1, 1], [1, 1], [1]],
+  // uncomment following line to do absolute positioning, for example to restore last saved position
+  // absolute: absoluteLayout,
 };
+
+function onLayoutChange(layout) {
+  // in this method you could save current layout in local storage and later restore on refresh
+  console.log(`onLayoutChange: new resource layout: ${JSON.stringify(layout)}`);
+}
 
 const classes = useStyles();
 
-<Workspace gridMargin={[15, 15]} classes={classes} layout={layout}>
+<Workspace gridMargin={[15, 15]} classes={classes} layout={layout} onLayoutChange={onLayoutChange}>
   <Card title="translationWords" classes={classes}>
     1
   </Card>

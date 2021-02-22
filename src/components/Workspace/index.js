@@ -17,9 +17,25 @@ export default function Workspace({
   dragBackgroundColor,
   classes,
   resizeHandle,
+  onLayoutChange,
 }) {
-  const { widths: layoutWidths, heights: layoutHeights = 1 } = layout;
-  let layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
+  const {
+    widths: layoutWidths,
+    heights: layoutHeights = 1,
+    absolute: layoutAbsolute,
+  } = layout;
+  let layouts;
+
+  if (layoutAbsolute) {
+    layouts = {
+      lg: layoutAbsolute,
+      md: layoutAbsolute,
+      sm: layoutAbsolute,
+    };
+  } else {
+    layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
+  }
+
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
     lg: totalGridUnits,
@@ -43,6 +59,7 @@ export default function Workspace({
         layouts={layouts}
         breakpoints={breakpoints}
         cols={columns}
+        onLayoutChange={onLayoutChange}
       >
         {children}
       </ResponsiveGridLayout>
@@ -80,6 +97,7 @@ Workspace.propTypes = {
       PropTypes.arrayOf(PropTypes.number),
       PropTypes.number,
     ]),
+    absolute: PropTypes.array,
   }),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
@@ -106,4 +124,5 @@ Workspace.propTypes = {
   dragBackgroundColor: PropTypes.string,
   classes: PropTypes.object,
   resizeHandle: PropTypes.instanceOf(React.Component),
+  onLayoutChange: PropTypes.func,
 };
