@@ -31,6 +31,8 @@
     "babel-loader": "^8.2.2",
     "core-js": "3.7.0",
     "css-loader": "^5.0.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-17-updated": "^1.0.2",
     "eslint": "7.13.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-config-recommended": "4.1.0",
@@ -62,5 +64,25 @@
   ],
   "files": [
     "dist/*"
-  ]
+  ],
+  "jest": {
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/src/**.{js,jsx,ts}",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!**/vendor/**"
+    ],
+    "testMatch": [
+      "<rootDir>**/**.spec.js"
+    ],
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "cypress"
+    ],
+    "transformIgnorePatterns": [
+      "mocks",
+      "node_modules"
+    ]
+  }
 }
