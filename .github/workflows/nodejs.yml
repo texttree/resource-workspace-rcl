@@ -35,15 +35,6 @@ jobs:
         run: yarn;
       - name: Run Tests
         run: yarn test;
-      - name: Create Badge For Coverage Results
-        run: yarn create-coverage-badge;
-      - name: Commit Coverage Results
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add ./coverage/shields.json -f
-          git checkout .
-          git diff-index --quiet HEAD || git commit -m "Add Coverage Results"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
