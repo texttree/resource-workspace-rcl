@@ -38,7 +38,16 @@ describe('testing Workspace', () => {
     generateLayoutTest(initialLayout, 5, found, done);
   });
 
-  it('test widths and heights', done => {
+  it('test widths array and heights array', done => {
+    const initialLayout = {
+      widths: [[1, 2, 3]],
+      heights: [[3, 2, 1]],
+    };
+    let found = false;
+    generateLayoutTest(initialLayout, 3, found, done);
+  });
+
+  it('test widths array and numerical height', done => {
     const initialLayout = {
       widths: [[1, 2, 3]],
       heights: 2,
@@ -76,10 +85,10 @@ function generateLayoutTest(initialLayout, cardCount, found, done, match = null)
   function onLayoutChange(layout) {
     if (!found) {
       found = true;
-      console.log(`for initial layout: ${JSON.stringify(initialLayout)}`);
-      console.log(`new resource layout: ${JSON.stringify(layout)}`);
+      // console.log(`for initial layout: ${JSON.stringify(initialLayout)}`);
+      // console.log(`new resource layout: ${JSON.stringify(layout)}`);
       let filtered = filterLayouts(layout);
-      console.log(`filtered: ${JSON.stringify(filtered)}`);
+      // console.log(`filtered: ${JSON.stringify(filtered)}`);
 
       if (match) {
         expect(filtered).toEqual(match);
@@ -102,7 +111,7 @@ function getCards(cardCount) {
 
   for (let i = 0; i < cardCount; i++) {
     cards.push(
-      <Card title={`Card ${i}`}>`Card ${i} Content`</Card>
+      <Card title={`Card ${i}`} key={`card_${i}`}>`Card ${i} Content`</Card>
     );
   }
 

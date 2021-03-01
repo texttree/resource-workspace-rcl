@@ -1,6 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing Workspace test widths and heights 1`] = `
+exports[`testing Workspace test widths array and heights array 1`] = `
+Array [
+  Object {
+    "h": 3,
+    "i": "1",
+    "w": 2,
+    "x": 0,
+    "y": 0,
+  },
+  Object {
+    "h": 2,
+    "i": "2",
+    "w": 4,
+    "x": 2,
+    "y": 0,
+  },
+  Object {
+    "h": 1,
+    "i": "3",
+    "w": 6,
+    "x": 6,
+    "y": 0,
+  },
+]
+`;
+
+exports[`testing Workspace test widths array and numerical height 1`] = `
 Array [
   Object {
     "h": 2,

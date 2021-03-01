@@ -92,9 +92,10 @@ Workspace.defaultProps = {
 
 Workspace.propTypes = {
   layout: PropTypes.shape({
-    widths: PropTypes.array.isRequired,
-    heights: PropTypes.oneOf([
+    widths: PropTypes.array,
+    heights: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.number),
+      PropTypes.arrayOf(PropTypes.array),
       PropTypes.number,
     ]),
     absolute: PropTypes.array,
