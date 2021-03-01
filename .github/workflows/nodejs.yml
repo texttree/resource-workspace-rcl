@@ -35,8 +35,4 @@ jobs:
         run: yarn;
       - name: Run Tests
         run: yarn test;
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.ACTIONS_TOKEN }}
-          branch: ${{ env.BRANCH }}
+
