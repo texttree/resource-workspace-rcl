@@ -10,7 +10,7 @@ export function useKeyWithChildren(_children) {
 
   const children = useMemo(() =>
     childrenArray.map((childComponent, index) => (
-      <Card key={index + 1}>{React.cloneElement(childComponent)}</Card>
+      <Card key={childComponent.key ?? index + 1}>{React.cloneElement(childComponent)}</Card>
     )), [childrenArray]);
   return children;
 }
