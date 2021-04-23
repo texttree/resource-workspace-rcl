@@ -8,19 +8,19 @@ configure({ adapter: new Adapter() });
 
 const absoluteLayout = [
   {
-    'w':6,'h':1,'x':0,'y':0,'i':'1',
+    'w':6, 'h':1, 'x':0, 'y':0, 'i': 'card_0',
   },
   {
-    'w':6,'h':1,'x':6,'y':2,'i':'2',
+    'w':6, 'h':1, 'x':6, 'y':2, 'i': 'card_1',
   },
   {
-    'w':6,'h':1,'x':0,'y':2,'i':'3',
+    'w':6, 'h':1, 'x':0, 'y':2, 'i': 'card_2',
   },
   {
-    'w':6,'h':1,'x':6,'y':0,'i':'4',
+    'w':6, 'h':1, 'x':6, 'y':0, 'i': 'card_3',
   },
   {
-    'w':12,'h':1,'x':0,'y':1,'i':'5',
+    'w':12, 'h':1, 'x':0, 'y':1, 'i': 'card_4',
   },
 ];
 
@@ -111,7 +111,7 @@ function getCards(cardCount) {
 
   for (let i = 0; i < cardCount; i++) {
     cards.push(
-      <Card title={`Card ${i}`} key={`card_${i}`}>`Card ${i} Content`</Card>
+      <Card title={`Card ${i}`} key={`card_${i}`}>`Card ${i} Content`</Card>,
     );
   }
 
