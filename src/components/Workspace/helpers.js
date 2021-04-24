@@ -53,21 +53,30 @@ export function getHeight(layoutHeights, ridx, cidx) {
   }
 }
 
-export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits) {
+export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, minW, minH) {
   let layouts = [];
 
   layoutWidths.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
       const previousColumns = row.filter((_, _index) => _index < cidx);
       const x = previousColumns.reduce((curr, next) => getWidth(row, next, maxGridUnits) + curr, 0);
-
-      layouts.push({
+      const _layout = {
         i: String(layouts.length + 1),
         x,
         y: ridx * (maxGridUnits / layoutWidths.length),
         w: getWidth(row, cellUnit, maxGridUnits),
         h: getHeight(layoutHeights, ridx, cidx),
-      });
+      };
+
+      if (minW) {
+        _layout.minW = minW;
+      }
+
+      if (minH) {
+        _layout.minH = minH;
+      }
+
+      layouts.push(_layout);
     });
   });
   return {

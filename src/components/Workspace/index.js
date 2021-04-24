@@ -23,6 +23,8 @@ export default function Workspace({
     widths: layoutWidths,
     heights: layoutHeights = 1,
     absolute: layoutAbsolute,
+    minW,
+    minH,
   } = layout;
   let layouts;
 
@@ -33,7 +35,7 @@ export default function Workspace({
       sm: layoutAbsolute,
     };
   } else {
-    layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits);
+    layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
   }
 
   const children = useKeyWithChildren(_children);
@@ -99,6 +101,8 @@ Workspace.propTypes = {
       PropTypes.number,
     ]),
     absolute: PropTypes.array,
+    minW: PropTypes.number,
+    minH: PropTypes.number,
   }),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,

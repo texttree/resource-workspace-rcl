@@ -3,25 +3,25 @@
 exports[`testing Workspace test widths array and heights array 1`] = `
 Array [
   Object {
-    "h": 3,
-    "i": "1",
-    "w": 2,
+    "h": 1,
+    "i": "card_0",
+    "w": 1,
     "x": 0,
     "y": 0,
   },
   Object {
-    "h": 2,
-    "i": "2",
-    "w": 4,
-    "x": 2,
-    "y": 0,
+    "h": 1,
+    "i": "card_1",
+    "w": 1,
+    "x": 0,
+    "y": 1,
   },
   Object {
     "h": 1,
-    "i": "3",
-    "w": 6,
-    "x": 6,
-    "y": 0,
+    "i": "card_2",
+    "w": 1,
+    "x": 0,
+    "y": 2,
   },
 ]
 `;
@@ -29,25 +29,25 @@ Array [
 exports[`testing Workspace test widths array and numerical height 1`] = `
 Array [
   Object {
-    "h": 2,
-    "i": "1",
-    "w": 2,
+    "h": 1,
+    "i": "card_0",
+    "w": 1,
     "x": 0,
     "y": 0,
   },
   Object {
-    "h": 2,
-    "i": "2",
-    "w": 4,
-    "x": 2,
-    "y": 0,
+    "h": 1,
+    "i": "card_1",
+    "w": 1,
+    "x": 0,
+    "y": 1,
   },
   Object {
-    "h": 2,
-    "i": "3",
-    "w": 6,
-    "x": 6,
-    "y": 0,
+    "h": 1,
+    "i": "card_2",
+    "w": 1,
+    "x": 0,
+    "y": 2,
   },
 ]
 `;
@@ -56,38 +56,38 @@ exports[`testing Workspace test widths only 1`] = `
 Array [
   Object {
     "h": 1,
-    "i": "1",
-    "w": 6,
+    "i": "card_0",
+    "w": 1,
     "x": 0,
     "y": 0,
   },
   Object {
     "h": 1,
-    "i": "2",
-    "w": 6,
-    "x": 6,
-    "y": 0,
-  },
-  Object {
-    "h": 1,
-    "i": "3",
-    "w": 6,
+    "i": "card_1",
+    "w": 1,
     "x": 0,
     "y": 1,
   },
   Object {
     "h": 1,
-    "i": "4",
-    "w": 6,
-    "x": 6,
-    "y": 1,
-  },
-  Object {
-    "h": 1,
-    "i": "5",
-    "w": 12,
+    "i": "card_2",
+    "w": 1,
     "x": 0,
     "y": 2,
+  },
+  Object {
+    "h": 1,
+    "i": "card_3",
+    "w": 1,
+    "x": 0,
+    "y": 3,
+  },
+  Object {
+    "h": 1,
+    "i": "card_4",
+    "w": 1,
+    "x": 0,
+    "y": 4,
   },
 ]
 `;
