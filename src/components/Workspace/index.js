@@ -42,9 +42,9 @@ export default function Workspace({
   const columns = _columns || {
     lg: totalGridUnits,
     md: totalGridUnits,
-    sm: totalGridUnits,
-    xs: totalGridUnits,
-    xxs: totalGridUnits,
+    sm: 6,
+    xs: 4,
+    xxs: 2,
   };
   const dragHandleClass = classes.dragIndicator;
   return (
