@@ -1,6 +1,6 @@
 {
   "name": "resource-workspace-rcl",
-  "version": "0.7.1-rc4",
+  "version": "0.7.1-rc5",
   "main": "dist",
   "scripts": {
     "test": "jest",
