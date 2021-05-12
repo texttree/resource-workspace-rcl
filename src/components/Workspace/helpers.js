@@ -54,7 +54,9 @@ export function getHeight(layoutHeights, ridx, cidx) {
 }
 
 export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, minW, minH) {
-  let layouts = [];
+  const layouts = [];
+  const smLayouts = [];
+  const xsLayouts = [];
 
   layoutWidths.forEach((row, ridx) => {
     row.forEach((cellUnit, cidx) => {
@@ -68,18 +70,44 @@ export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, minW,
         h: getHeight(layoutHeights, ridx, cidx),
       };
 
+      const smLayout = {
+        i: String(layouts.length + 1),
+        x,
+        y: ridx * (6 / layoutWidths.length),
+        w: minW,
+        h: getHeight(layoutHeights, ridx, cidx),
+      };
+
+      const xsLayout = {
+        i: String(layouts.length + 1),
+        x,
+        y: ridx * (6 / layoutWidths.length),
+        w: minW,
+        h: getHeight(layoutHeights, ridx, cidx),
+      };
+
       if (minW) {
         _layout.minW = minW;
+        xsLayout.minW = minW;
+        smLayout.minW = minW;
       }
 
       if (minH) {
         _layout.minH = minH;
+        xsLayout.minH = minH;
+        smLayout.minH = minH;
       }
 
+      xsLayouts.push(xsLayout);
+      smLayouts.push(smLayout);
       layouts.push(_layout);
     });
   });
+
   return {
-    lg: layouts, md: layouts, sm: layouts,
+    lg: layouts,
+    md: layouts,
+    sm: smLayouts,
+    xs: xsLayouts,
   };
 }

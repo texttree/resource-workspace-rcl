@@ -18,22 +18,37 @@ export default function Workspace({
   classes,
   resizeHandle,
   onLayoutChange,
+  layoutWidths,
+  layoutHeights,
+  minW,
+  minH,
 }) {
-  const {
-    widths: layoutWidths,
-    heights: layoutHeights = 1,
-    absolute: layoutAbsolute,
-    minW,
-    minH,
-  } = layout;
+  // const {
+  //   widths: layoutWidths,
+  //   heights: layoutHeights = 1,
+  //   absolute: layoutAbsolute,
+  //   minW,
+  //   minH,
+  // } = layout;
   let layouts;
 
-  if (layoutAbsolute) {
-    layouts = {
-      lg: layoutAbsolute,
-      md: layoutAbsolute,
-      sm: layoutAbsolute,
-    };
+  if (layout) {
+    // layouts = {
+    //   lg: layoutAbsolute,
+    //   md: layoutAbsolute,
+    //   sm: layoutAbsolute,
+    // };
+
+    // Breaking change: After v1.0.0 layout was changed from array to object to allow each breakpoint
+    // to have its own layout settings. Thus, the code below migrates the old layout prop to the new format.
+    if (Array.isArray(layout)) {
+      layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
+      layouts = {
+        ...layouts, lg: layout, md: layout,
+      };
+    } else {
+      layouts = { ...layout };
+    }
   } else {
     layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
   }
@@ -43,15 +58,22 @@ export default function Workspace({
     lg: totalGridUnits,
     md: totalGridUnits,
     sm: 6,
-    xs: 4,
-    xxs: 2,
+    xs: minW || 4,
+    xxs: minW || 2,
   };
+
+  console.log({
+    columns,
+    breakpoints,
+  });
+
   const dragHandleClass = classes.dragIndicator;
+
   return (
     <Container
-      dragBackgroundColor={dragBackgroundColor}
       style={style}
       classes={classes.root}
+      dragBackgroundColor={dragBackgroundColor}
     >
       <ResponsiveGridLayout
         resizeHandle={resizeHandle || ''}
@@ -79,10 +101,6 @@ Workspace.defaultProps = {
     xs: 480,
     xxs: 0,
   },
-  layout: {
-    widths: [[1]],
-    heights: [[1]],
-  },
   rowHeight: 100,
   children: [],
   dragBackgroundColor: 'transparent',
@@ -93,17 +111,6 @@ Workspace.defaultProps = {
 };
 
 Workspace.propTypes = {
-  layout: PropTypes.shape({
-    widths: PropTypes.array,
-    heights: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.number),
-      PropTypes.arrayOf(PropTypes.array),
-      PropTypes.number,
-    ]),
-    absolute: PropTypes.array,
-    minW: PropTypes.number,
-    minH: PropTypes.number,
-  }),
   /** The items rendered inside the component */
   children: PropTypes.array.isRequired,
   style: PropTypes.object,
@@ -130,4 +137,13 @@ Workspace.propTypes = {
   classes: PropTypes.object,
   resizeHandle: PropTypes.instanceOf(React.Component),
   onLayoutChange: PropTypes.func,
+  layout: PropTypes.array,
+  layoutWidths: PropTypes.array,
+  layoutHeights: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.arrayOf(PropTypes.array),
+    PropTypes.number,
+  ]),
+  minW: PropTypes.number,
+  minH: PropTypes.number,
 };
