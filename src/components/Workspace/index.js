@@ -23,25 +23,22 @@ export default function Workspace({
   minW,
   minH,
 }) {
-  // const {
-  //   widths: layoutWidths,
-  //   heights: layoutHeights = 1,
-  //   absolute: layoutAbsolute,
-  //   minW,
-  //   minH,
-  // } = layout;
   let layouts;
 
   if (layout) {
-    // layouts = {
-    //   lg: layoutAbsolute,
-    //   md: layoutAbsolute,
-    //   sm: layoutAbsolute,
-    // };
-
     // Breaking change: After v1.0.0 layout was changed from array to object to allow each breakpoint
     // to have its own layout settings. Thus, the code below migrates the old layout prop to the new format.
     if (Array.isArray(layout)) {
+      // Add minimum width & minimum height if it isn't defined.
+      if (!layout[0]?.minW || !layout[0]?.minH) {
+        const newCurrentLayout = layout.map(l => {
+          l.minW = layout.minW;
+          l.minH = layout.minH;
+          return l;
+        });
+        layout = newCurrentLayout;
+      }
+
       layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
       layouts = {
         ...layouts, lg: layout, md: layout,
@@ -61,12 +58,6 @@ export default function Workspace({
     xs: minW || 4,
     xxs: minW || 2,
   };
-
-  console.log({
-    columns,
-    breakpoints,
-  });
-
   const dragHandleClass = classes.dragIndicator;
 
   return (
