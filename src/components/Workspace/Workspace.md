@@ -18,29 +18,32 @@ const useStyles = makeStyles(() => ({
   dragIndicator: {},
 }));
 
-const absoluteLayout = [
-  {"w":6,"h":1,"x":0,"y":0,"i":"1"},
-  {"w":6,"h":1,"x":6,"y":2,"i":"2"},
-  {"w":6,"h":1,"x":0,"y":2,"i":"3"},
-  {"w":6,"h":1,"x":6,"y":0,"i":"4"},
-  {"w":12,"h":1,"x":0,"y":1,"i":"5"},
-];
-
 const layout = {
-  // this line is for relative positioning
-  widths: [[1, 1], [1, 1], [1]],
-  // uncomment following line to do absolute positioning, for example to restore last saved position
-  // absolute: absoluteLayout,
+  lg: [
+    {"w":6,"h":1,"x":0,"y":0,"i":"1"},
+    {"w":6,"h":1,"x":6,"y":2,"i":"2"},
+    {"w":6,"h":1,"x":0,"y":2,"i":"3"},
+    {"w":6,"h":1,"x":6,"y":0,"i":"4"},
+    {"w":12,"h":1,"x":0,"y":1,"i":"5"},
+  ]
 };
 
-function onLayoutChange(layout) {
-  // in this method you could save current layout in local storage and later restore on refresh
-  console.log(`onLayoutChange: new resource layout: ${JSON.stringify(layout)}`);
+function onLayoutChange(_layout, layouts) {
+  console.log({ _layout, layouts })
+  // in this method you could save current layouts in local storage and later restore on refresh
+  console.log(`onLayoutChange: new resource layouts: ${JSON.stringify(layouts)}`);
 }
 
 const classes = useStyles();
+const layoutWidths = [[1, 1], [1, 1], [1]];
 
-<Workspace gridMargin={[15, 15]} classes={classes} layout={layout} onLayoutChange={onLayoutChange}>
+<Workspace
+  gridMargin={[15, 15]}
+  classes={classes}
+  layout={layout}
+  onLayoutChange={onLayoutChange}
+  layoutWidths={layoutWidths}
+>
   <Card title="translationWords" classes={classes}>
     1
   </Card>

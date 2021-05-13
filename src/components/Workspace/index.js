@@ -94,6 +94,8 @@ Workspace.defaultProps = {
   },
   rowHeight: 100,
   children: [],
+  layoutWidths: [[1]],
+  layoutHeights: [[1]],
   dragBackgroundColor: 'transparent',
   classes: {
     root: {},
