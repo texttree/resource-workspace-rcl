@@ -6,24 +6,6 @@ import Card from './utils/Card';
 
 configure({ adapter: new Adapter() });
 
-const absoluteLayout = [
-  {
-    'w':6, 'h':1, 'x':0, 'y':0, 'i': 'card_0',
-  },
-  {
-    'w':6, 'h':1, 'x':6, 'y':2, 'i': 'card_1',
-  },
-  {
-    'w':6, 'h':1, 'x':0, 'y':2, 'i': 'card_2',
-  },
-  {
-    'w':6, 'h':1, 'x':6, 'y':0, 'i': 'card_3',
-  },
-  {
-    'w':12, 'h':1, 'x':0, 'y':1, 'i': 'card_4',
-  },
-];
-
 const test_layout = {
   // this line is for relative positioning
   widths: [[1, 1], [1, 1], [1]],
@@ -54,13 +36,6 @@ describe('testing Workspace', () => {
     };
     let found = false;
     generateLayoutTest(initialLayout, 3, found, done);
-  });
-
-  it('test absolute layout', done => {
-    const match = absoluteLayout;
-    const initialLayout = { absolute: absoluteLayout };
-    let found = false;
-    generateLayoutTest(initialLayout, absoluteLayout.length, found, done, match);
   });
 });
 
