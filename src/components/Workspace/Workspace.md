@@ -5,8 +5,10 @@ The API documentation of the Workspace React component. Learn more about the pro
 ## Basic
 
 ```jsx
+import React, { useState } from 'react';
 import { Card } from 'translation-helps-rcl';
 import { makeStyles } from '@material-ui/core/styles';
+import { getXY, Workspace } from 'resource-workspace-rcl';
 import '../../css/resource-workspace-rcl.css';
 
 const useStyles = makeStyles(() => ({
@@ -28,14 +30,20 @@ const layout = {
   ]
 };
 
+const breakpoints = {lg: 900, md: 700, sm: 500};
+const [breakpoint, setBreakpoint] = useState(12);
 function onLayoutChange(_layout, layouts) {
   console.log({ _layout, layouts })
+  console.log(getXY(_layout, breakpoint, 4, 4));
   // in this method you could save current layouts in local storage and later restore on refresh
   console.log(`onLayoutChange: new resource layouts: ${JSON.stringify(layouts)}`);
 }
 
 const classes = useStyles();
 const layoutWidths = [[1, 1], [1, 1], [1]];
+const onBreakpointChange = (name, cols) => {
+    setBreakpoint(cols);
+  };
 
 <Workspace
   gridMargin={[15, 15]}
@@ -43,6 +51,8 @@ const layoutWidths = [[1, 1], [1, 1], [1]];
   layout={layout}
   onLayoutChange={onLayoutChange}
   layoutWidths={layoutWidths}
+  breakpoints={breakpoints}
+  onBreakpointChange={onBreakpointChange}
 >
   <Card title="translationWords" classes={classes}>
     1
