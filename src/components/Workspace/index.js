@@ -60,7 +60,7 @@ export default function Workspace({
 
   useEffect(() => {
     if (autoResize) {
-      setRowHeight(height / 8 - gridMargin[0] );
+      setRowHeight(height / 5 - gridMargin[0] );
     }
   }, [autoResize, height, gridMargin]);
 
@@ -72,6 +72,8 @@ export default function Workspace({
     xs: minW || 4,
     xxs: minW || 2,
   };
+  console.log(height);
+  console.log(_rowHeight);
   const dragHandleClass = classes.dragIndicator;
   return (
     <Container
@@ -80,7 +82,7 @@ export default function Workspace({
       dragBackgroundColor={dragBackgroundColor}
     >
       <ResponsiveGridLayout
-        style={ { height: '600px' } }
+        style={ { height: height+'px'}}
         resizeHandle={resizeHandle || ''}
         rowHeight={_rowHeight}
         draggableHandle={`.${dragHandleClass}` || ''}
