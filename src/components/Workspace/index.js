@@ -60,7 +60,7 @@ export default function Workspace({
 
   useEffect(() => {
     if (autoResize) {
-      setRowHeight(height / 5 - gridMargin[0] - 2);
+      setRowHeight(height / 8 - gridMargin[0] );
     }
   }, [autoResize, height, gridMargin]);
 
