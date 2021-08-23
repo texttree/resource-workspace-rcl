@@ -1,6 +1,5 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Card from '../Card';
-import {useWindowSize} from '../../hooks'
 
 export function useKeyWithChildren(_children) {
   let childrenArray = _children;
@@ -52,16 +51,6 @@ export function getHeight(layoutHeights, ridx, cidx) {
     //No height specified
     return 1;
   }
-}
-export function relativeHeight(){
-  const [, height] = useWindowSize();
-  const [rowHeight, setRowHeight] = useState(30);
-  
-  useEffect(() => {
-    setRowHeight((height - 64) / 10 - 17);
-  }, [height]);
-  return rowHeight;
-
 }
 export function generateLayouts(layoutWidths, layoutHeights, maxGridUnits, minW, minH) {
   const layouts = [];

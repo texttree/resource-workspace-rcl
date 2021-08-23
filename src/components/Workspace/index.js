@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import { useWindowSize } from '../../hooks';
 import { Container } from './styled';
-import { useKeyWithChildren, generateLayouts, relativeHeight } from './helpers';
+import {
+  useKeyWithChildren,
+  generateLayouts,
+} from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function Workspace({
@@ -51,9 +55,14 @@ export default function Workspace({
     layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
   }
 
-if (autoResize === true){
-  rowHeight = relativeHeight();
-} else{rowHeight = rowHeight}
+  const [, height] = useWindowSize();
+  const [_rowHeight, setRowHeight] = useState(rowHeight);
+
+  useEffect(() => {
+    if (autoResize) {
+      setRowHeight(height / 5 - gridMargin[0] - 2);
+    }
+  }, [autoResize, height, gridMargin]);
 
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
@@ -64,7 +73,6 @@ if (autoResize === true){
     xxs: minW || 2,
   };
   const dragHandleClass = classes.dragIndicator;
- 
   return (
     <Container
       style={style}
@@ -72,14 +80,16 @@ if (autoResize === true){
       dragBackgroundColor={dragBackgroundColor}
     >
       <ResponsiveGridLayout
+        style={ { height: '600px' } }
         resizeHandle={resizeHandle || ''}
-        rowHeight={rowHeight}
+        rowHeight={_rowHeight}
         draggableHandle={`.${dragHandleClass}` || ''}
         margin={gridMargin}
         layouts={layouts}
         breakpoints={breakpoints}
         cols={columns}
         onLayoutChange={onLayoutChange}
+        autoSize={false}
       >
         {children}
       </ResponsiveGridLayout>
@@ -97,6 +107,7 @@ Workspace.defaultProps = {
     xs: 480,
     xxs: 0,
   },
+  autoResize: false,
   rowHeight: 100,
   children: [],
   layoutWidths: [[1]],

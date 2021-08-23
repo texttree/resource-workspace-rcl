@@ -5,6 +5,7 @@ The API documentation of the Workspace React component. Learn more about the pro
 ## Basic
 
 ```jsx
+import {useRef, useEffect} from 'react';
 import { Card } from 'translation-helps-rcl';
 import { makeStyles } from '@material-ui/core/styles';
 import '../../css/resource-workspace-rcl.css';
@@ -29,9 +30,9 @@ const layout = {
 };
 
 function onLayoutChange(_layout, layouts) {
-  console.log({ _layout, layouts })
+  //console.log({ _layout, layouts })
   // in this method you could save current layouts in local storage and later restore on refresh
-  console.log(`onLayoutChange: new resource layouts: ${JSON.stringify(layouts)}`);
+  //console.log(`onLayoutChange: new resource layouts: ${JSON.stringify(layouts)}`);
 }
 
 const classes = useStyles();
@@ -41,6 +42,7 @@ const layoutWidths = [[1, 1], [1, 1], [1]];
   gridMargin={[15, 15]}
   classes={classes}
   layout={layout}
+  autoResize={true}
   onLayoutChange={onLayoutChange}
   layoutWidths={layoutWidths}
 >
