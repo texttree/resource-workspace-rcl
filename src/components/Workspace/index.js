@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import { Container } from './styled';
-import { useKeyWithChildren, generateLayouts } from './helpers';
+import { useKeyWithChildren, generateLayouts, relativeHeight } from './helpers';
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export default function Workspace({
@@ -22,6 +22,7 @@ export default function Workspace({
   layoutHeights,
   minW,
   minH,
+  autoResize,
 }) {
   let layouts;
 
@@ -50,6 +51,10 @@ export default function Workspace({
     layouts = generateLayouts(layoutWidths, layoutHeights, totalGridUnits, minW, minH);
   }
 
+if (autoResize === true){
+  rowHeight = relativeHeight();
+} else{rowHeight = rowHeight}
+
   const children = useKeyWithChildren(_children);
   const columns = _columns || {
     lg: totalGridUnits,
@@ -59,7 +64,7 @@ export default function Workspace({
     xxs: minW || 2,
   };
   const dragHandleClass = classes.dragIndicator;
-
+ 
   return (
     <Container
       style={style}
@@ -139,4 +144,5 @@ Workspace.propTypes = {
   ]),
   minW: PropTypes.number,
   minH: PropTypes.number,
+  autoResize: PropTypes.bool,
 };
