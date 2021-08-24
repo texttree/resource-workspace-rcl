@@ -3,7 +3,6 @@ export const useWindowSize = () => {
   const [size, setSize] = useState([0, 0]);
 
   useLayoutEffect(() => {
-    // const div = document.getElementsByClassName("react-grid-layout");
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
     }
@@ -13,5 +12,4 @@ export const useWindowSize = () => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
   return size;
- 
 };
